@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <center>
+        <br/>
+        <img src="{{ url_for('static', filename='images/500.png') }}" class="img-fluid rounded shadow" style="max-width: 400px;">
+        <br/><br/>
+        <h1>500 - Internal Server Error</h1>
+        <h2>Sunog yung niluluto sa server!</h2>
+        <p>Wait lang boss, inaayos pa.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-dark">Bumalik sa Home</a>
+    </center>
+{% endblock %}

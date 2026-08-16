@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        <br/>
+        <!-- IMAGE FOR 404 -->
+        <img src="{{ url_for('static', filename='images/404.png') }}" 
+             alt="Lost in Kitchen" 
+             class="img-fluid rounded shadow" 
+             style="max-width: 400px; max-height: 300px; object-fit: cover;">
+
+        <br/><br/>
+        <h1>404 Error</h1>
+        <h2>Page Not Found - Naligaw ka boss!</h2>
+        <p>Yung hinahanap mong page wala dito sa kusina.</p>
+        <p>Baka naubos na yung Adobo? 😅</p>
+        
+        <a href="{{ url_for('index') }}" class="btn btn-dark mt-2">🍲 Bumalik sa Home</a>
+        <a href="{{ url_for('order') }}" class="btn btn-success mt-2">Mag Order Na Lang</a>
+    </center>
+{% endblock %}

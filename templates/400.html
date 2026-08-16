@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        <img src="{{ url_for('static', filename='images/400.png') }}" 
+             class="img-fluid rounded shadow mb-3" 
+             style="max-width: 350px; height: auto;">
+        <h1>400 Error</h1>
+        <h2>Bad Request - Sablay yung order mo boss!</h2>
+        <p>Mali yung sinubmit mo sa form.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-dark">Bumalik sa Home</a>
+    </center>
+{% endblock %}

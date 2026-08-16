@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if name %}
+    <h1>Hello {{ name | title }}! Welcome to Mancao's Kitchen 🍲</h1>
+{% else %}
+    <h1>What's your name?</h1>
+{% endif %}
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.name.label(class="form-label") }}
+    {{ form.name(class="form-control") }}<br/>
+    {{ form.submit(class="btn btn-success") }}
+</form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <center>
+        <img src="{{ url_for('static', filename='images/403.png') }}" 
+             class="img-fluid rounded shadow mb-3" 
+             style="max-width: 350px; height: auto;">
+        <h1>403 Error</h1>
+        <h2>Forbidden - Bawal ang pasaway sa kusina!</h2>
+        <p>Wala kang permission dito.</p>
+        <a href="{{ url_for('index') }}" class="btn btn-dark">Bumalik sa Home</a>
+    </center>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Order Form - Mancao's Kitchen 🍲</h1>
+<p>Demo ng StringField, IntegerField, DecimalField at lahat ng Validators</p>
+<hr/>
+
+{% if total is not none %}
+<div class="alert alert-info">
+    <h4>Computation:</h4>
+    <p>Total Computed: <strong>₱{{ "%.2f"|format(total) }}</strong></p>
+</div>
+{% endif %}
+
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div class="row">
+        <div class="col-md-6">
+            {{ form.customer_name.label(class="form-label fw-bold") }}
+            {{ form.customer_name(class="form-control") }}
+            {% if form.customer_name.errors %}
+                {% for error in form.customer_name.errors %}
+                    <small class="text-danger">{{ error }}</small>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            {{ form.email.label(class="form-label fw-bold") }}
+            {{ form.email(class="form-control") }}
+            {% for error in form.email.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+
+    {{ form.ulam.label(class="form-label fw-bold") }}
+    {{ form.ulam(class="form-select") }}
+    <br/>
+
+    <div class="row">
+        <div class="col-md-4">
+            {{ form.quantity.label(class="form-label fw-bold") }} <small>(IntegerField)</small>
+            {{ form.quantity(class="form-control", placeholder="1-20") }}
+            {% for error in form.quantity.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            {{ form.price.label(class="form-label fw-bold") }} <small>(DecimalField)</small>
+            {{ form.price(class="form-control", placeholder="e.g. 120.50") }}
+            {% for error in form.price.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div class="col-md-4">
+            {{ form.discount.label(class="form-label fw-bold") }} <small>(DecimalField)</small>
+            {{ form.discount(class="form-control", placeholder="e.g. 10.00") }}
+            {% for error in form.discount.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+    </div>
+    <br/>
+
+    {{ form.payment_method.label(class="form-label fw-bold") }}<br/>
+    {% for subfield in form.payment_method %}
+        <div class="form-check form-check-inline">
+            {{ subfield(class="form-check-input") }}
+            {{ subfield.label(class="form-check-label") }}
+        </div>
+    {% endfor %}
+    <br/><br/>
+
+    {{ form.delivery_date.label(class="form-label fw-bold") }}
+    {{ form.delivery_date(class="form-control", type="date") }}
+    <br/>
+
+    <div class="form-check">
+        {{ form.agree_terms(class="form-check-input") }}
+        {{ form.agree_terms.label(class="form-check-label") }}
+        {% for error in form.agree_terms.errors %}
+            <br/><small class="text-danger">{{ error }}</small>
+        {% endfor %}
+    </div>
+    <br/>
+
+    {{ form.submit(class="btn btn-success btn-lg w-100") }}
+</form>
+
+<br/>
+<div class="card">
+    <div class="card-body">
+        <h5>DecimalField Explained:</h5>
+        <code>price = DecimalField("Price", places=2, validators=[NumberRange(min=0.01)])</code>
+        <ul class="mt-2">
+            <li><code>places=2</code> = 2 decimals lang: 120.50</li>
+            <li><code>NumberRange</code> validator = pang limit ng value</li>
+            <li>Gamit pag pera, price, discount, weight na may .XX</li>
+            <li>IntegerField = walang point (1,2,3) | DecimalField = may point (1.25, 99.99)</li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

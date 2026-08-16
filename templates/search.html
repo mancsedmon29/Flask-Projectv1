@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>You Searched For: <em>{{ searched }}</em></h2>
+    {% if results %}
+        <ul class="list-group mt-3">
+            {% for item in results %}<li class="list-group-item">{{ item }}</li>{% endfor %}
+        </ul>
+    {% else %}
+        <p>No results for <strong>{{ searched }}</strong></p>
+    {% endif %}
+{% endblock %}
